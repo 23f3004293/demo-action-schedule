@@ -1,18 +1,28 @@
-name: Master
+name: Super-Linter
 
-on:
+on: 
   push:
     branches:
       - master
   schedule:
-    - cron: "7 6 * * *"  # Runs daily at 6:05 AM IST
+    - cron: "17 6 * * *"  # 6:10 AM IST
   workflow_dispatch:
 
 jobs:
-  build:
+  super-lint:
+    name: Lint code base
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v1  # ✅ Correct 'uses' step
-      - name: Running               # ✅ Correct 'run' step
-        run: |
-          echo "Running!"
+      - name: 23f3004293@ds.study.iitm.ac.in  # ✅ MUST appear exactly like this
+        run: echo "This step is named after my email"
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Super-Linter
+        uses: github/super-linter@v4
+        env:
+          DEFAULT_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
