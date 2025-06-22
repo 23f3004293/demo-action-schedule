@@ -5,16 +5,14 @@ on:
     branches:
       - master
   schedule:
-    # Runs at 00:00 UTC every day
-    - cron: "5 6 * * *"
-  workflow_dispatch: # Allow manual triggers
+    - cron: "7 6 * * *"  # Runs daily at 6:05 AM IST
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: Running
+      - uses: actions/checkout@v1  # ✅ Correct 'uses' step
+      - name: Running               # ✅ Correct 'run' step
         run: |
           echo "Running!"
-
